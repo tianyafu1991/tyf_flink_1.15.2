@@ -13,6 +13,7 @@
         <module>tyf-flink-datastream</module>
         <module>tyf-flink-sql</module>
         <module>tyf-flink-cdc</module>
+        <module>tyf-flink-project</module>
     </modules>
 
     <repositories>
@@ -71,11 +72,25 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.flink</groupId>
+                <artifactId>flink-connector-jdbc</artifactId>
+                <version>${flink.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.bahir</groupId>
+                <artifactId>flink-connector-redis_2.11</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+
+            <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
             </dependency>
 
+            <!-- 日志相关依赖 -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-slf4j-impl</artifactId>
