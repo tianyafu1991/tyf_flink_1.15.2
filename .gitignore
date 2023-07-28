@@ -4,6 +4,7 @@
 # Log file
 *.log
 !data/access.log
+!data/productaccess.log
 
 # BlueJ files
 *.ctxt

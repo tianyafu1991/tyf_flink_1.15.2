@@ -4,6 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.tyf.flink.bean.CourseInfo;
 import com.tyf.flink.bean.ProductAccess;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -93,15 +96,31 @@ public class MockData {
         return courseInfoMap;
     }
 
-    public static void main(String[] args) {
+    /**
+     * 方法 2：使用 BufferedWriter 写文件
+     * @param filepath 文件目录
+     * @param content  待写入内容
+     * @throws IOException
+     */
+    public static void bufferedWriterMethod(String filepath, String content) throws IOException {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath))) {
+            bufferedWriter.write(content);
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
         Random rand = new Random();
         Map<Integer, CourseInfo[]> courseInfoMap = generateCourseMap();
         String[] osArray = new String[]{"Android","iOS","MAC OS","Harmony OS"};
-//        Map<Integer,CourseInfo> descriptionsMap2 = new HashMap<>();
+        String outputPath = "data/productaccess.log";
+        StringBuilder builder = new StringBuilder();
 
-        ProductAccess productAccess = generateProductAccess(courseInfoMap, osArray);
-        System.out.println(JSON.toJSONString(productAccess, true));
-//        System.out.println(productAccess);
+        for (int i = 0; i < 1000; i++) {
+            ProductAccess productAccess = generateProductAccess(courseInfoMap, osArray);
+            builder.append(JSON.toJSONString(productAccess)).append("\n");
+        }
+
+        bufferedWriterMethod(outputPath,builder.toString());
 
     }
 }
