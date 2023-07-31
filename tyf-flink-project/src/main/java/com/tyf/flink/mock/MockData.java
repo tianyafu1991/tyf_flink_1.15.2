@@ -8,6 +8,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.*;
 
 public class MockData {
@@ -69,7 +72,13 @@ public class MockData {
         productAccess.setName(courseInfo.getName());
         productAccess.setOs(osArray[rand.nextInt(osArray.length)]);
         productAccess.setStatus(courseInfo.getStatus());
-        productAccess.setTs(System.currentTimeMillis());
+        LocalDateTime now = LocalDateTime.now();
+        if(rand.nextInt(2) % 2 == 0){
+            now = now.plusDays(-1L);
+        }
+        long timestamp = now.toEpochSecond(ZoneOffset.of("+8")) * 1000;
+
+        productAccess.setTs(timestamp);
 
         return productAccess;
     }
