@@ -15,6 +15,7 @@
         <module>tyf-flink-cdc</module>
         <module>tyf-flink-project</module>
         <module>tyf-kafka</module>
+        <module>tyf-flink-kafka</module>
     </modules>
 
     <repositories>

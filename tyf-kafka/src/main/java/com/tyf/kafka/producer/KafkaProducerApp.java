@@ -24,11 +24,6 @@ public class KafkaProducerApp {
     public void setup(){
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BROKERS);
-        /*props.put("acks", "all");
-        props.put("retries", 0);
-        props.put("batch.size", 16384);
-        props.put("linger.ms", 1);
-        props.put("buffer.memory", 33554432);*/
 
         // 如果你想去提升你的Kafka的性能问题，是不是该从如下环节入手
         props.put(ProducerConfig.BATCH_SIZE_CONFIG, 16384);
