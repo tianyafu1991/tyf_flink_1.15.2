@@ -21,21 +21,25 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- Flink WEB UI 的依赖 -->
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-runtime-web</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-jdbc</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -52,6 +56,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.58</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -64,6 +69,7 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.1.20</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- 日志相关依赖 -->
@@ -80,5 +86,34 @@
             <artifactId>log4j-core</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.tyf.flink.scenario03.EOSApp01</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
